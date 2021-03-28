@@ -2,20 +2,53 @@ var textArea = document.getElementById("textArea");
 var str = "";
 var capsValue = false;
 var value = "";
+var shift = false;
 
 if(document.getElementById('caps-lock').clicked == true) {
        alert("clicked");
      };
 function btnClick(id) {
   value = document.getElementById(id).innerHTML;
-
-  textArea.innerHTML += value;
+    if (capsValue == true) {
+        if (shift == true) {
+            textArea.innerHTML += value;
+            shift = false;
+        }
+        else {
+          textArea.innerHTML += value.toUpperCase();
+        }
+       
+    }
+    else {
+        if (shift == true) {
+            textArea.innerHTML += value.toUpperCase();
+            shift = false;
+        }
+        else {
+            textArea.innerHTML += value;
+        }
+        
+    }
+ 
   str = textArea.innerHTML;
 }
- function capsLock(value) {
-     capsValue = true;
+function capsLock() {
+    if (capsValue == false) {
+        capsValue = true;
+    }
+    else {
+        capsValue = false;
+    }
+     
     //textArea.innerHTML -= capsValue;
-    textArea.innerHTML += value.toUpperCase();
+    
+}
+function shiftf() {
+   
+    if (shift == false)
+        shift = true;
+
+
 }
 
 function btnOk() {
@@ -34,4 +67,7 @@ function backSpace() {
 }
 function space() {
   textArea.innerHTML += " ";
+}
+function enter() {
+    textArea.innerHTML += "\n";
 }
